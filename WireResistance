@@ -1,0 +1,72 @@
+import java.lang.Math;
+
+import java.util.Scanner;
+
+public class WireResistance {
+
+	static double computeDiameter(int wireGauge) {
+
+        return 0.127 * Math.pow(92,(36-wireGauge)/39.0);
+
+    }//returns diameter in meters
+
+
+    static double computeCopperWireResistance(double length,int wireGauge) {
+
+        double p=1.678e-8;
+
+        double d=computeDiameter(wireGauge);
+        
+        length=length*0.0254;//convert inches to meters
+
+        return 4*p*(length)/(Math.PI*d*d)*1e6;
+
+    }//must multiply by 1e6 because d is in millimeters
+
+    static double computeAlumWireResistance(double length,int wireGauge) {
+
+        double p=2.82e-8;
+
+        double d=computeDiameter(wireGauge);
+
+        return 4*p*(length*0.0254)/(Math.PI*d*d)*1e6;
+
+    }
+
+    public static void main(String[] args) {
+
+        int wireGauge=0;
+
+        double length=0;
+
+        Scanner reader = new Scanner(System.in);
+
+        
+        System.out.printf("Enter the wire gauge:");
+
+        wireGauge=reader.nextInt();
+
+        System.out.println();
+
+        System.out.printf("Enter the length in inches:");
+
+        length=reader.nextDouble();
+
+        System.out.println();
+
+        
+
+        System.out.printf("The resistance of a %.0f inch piece ",length);
+        
+        System.out.printf("of %d gauge copper wire is %5.3f Ohms.\n\n",wireGauge
+        		,computeCopperWireResistance(length,wireGauge));
+        
+        System.out.printf("The resistance of a %.0f inch piece ",length);
+        
+        System.out.printf("of %d gauge aluminum wire is %5.3f Ohms.",wireGauge
+        		,computeAlumWireResistance(length,wireGauge));
+        
+        reader.close();
+    }
+
+}
