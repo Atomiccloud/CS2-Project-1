@@ -1,0 +1,22 @@
+
+public class PrintVoltageWater {
+	
+	public static void main(String args[]) {
+		double vm = 0;
+		double temp = 0;
+		
+		System.out.println("  T	 vm");
+		System.out.println("------ ------");
+		
+		for(int x=0;x<=10;x++) {
+			
+			temp=x*10;
+			//vm in terms of temperature
+			vm=20*(temp+100)/(temp+250);
+			
+			System.out.printf("%3.0f	%5.2f\n",temp,vm);
+			
+		}
+	}
+		
+}
