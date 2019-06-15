@@ -1,0 +1,63 @@
+
+import java.util.Scanner;
+
+public class LargestElement {
+	
+	public static int[] locateLargest(double a[][]) {
+		
+		int[] answer = new int[2];
+		double max = a[0][0];
+		int rows = a.length;
+		int columns = a[0].length;
+		
+		for(int n=0;n<rows;n++) {
+			
+			for(int m=0;m<columns;m++) {
+				
+				if(max<a[n][m]) {
+					
+					max=a[n][m];
+					answer[0]=n;
+					answer[1]=m;
+					
+				}
+			}
+		}
+
+		return answer;
+	}//walks through 2D array and returns largest double
+	
+	public static void main(String args[]) {
+		
+		int rows = 0;
+		int columns = 0;
+		int[] answer = new int[2];
+		
+		Scanner scanny = new Scanner(System.in);
+		
+		System.out.println("Enter the number of rows and columns of the array:");
+		
+		rows = scanny.nextInt();
+		columns = scanny.nextInt();
+		
+		System.out.println("Enter the array:");
+		
+		double[][] arr = new double[rows][columns];//create array
+		
+		for(int n=0;n<rows;n++) {
+			
+			for(int m=0;m<columns;m++) {
+
+				arr[n][m] = scanny.nextDouble();
+					
+			}
+		}//receives doubles and creates 2D array
+		
+		answer = locateLargest(arr);
+		
+		System.out.printf("The location of the largest element is at(%d, %d)"
+				,answer[0],answer[1]);
+		
+		scanny.close();
+	}
+}
